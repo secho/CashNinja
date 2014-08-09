@@ -67,8 +67,6 @@ public class AskNinja extends Activity {
 
             if (col == 0 ) {
                 amountView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.check_balance, container, false);
-
-
                 container.addView(amountView);
                 return amountView;
             } else if (col == 1) {
