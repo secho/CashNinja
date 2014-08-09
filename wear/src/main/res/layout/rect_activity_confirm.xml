@@ -11,16 +11,21 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_gravity="center_horizontal|center_vertical">
 
 
-        <TextView
+        <android.support.wearable.view.CircledImageView
+            android:id="@+id/confirmb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Confirmed..."
-            android:textColor="@color/black"
-            android:id="@+id/textView"
-            android:layout_gravity="left|top" />
+            android:src="@drawable/confirmation"
+            app:circle_color="@color/blue"
+            app:circle_radius="60dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            app:circle_radius_pressed="40dp"/>
+
+
     </RelativeLayout>
+
+
 </FrameLayout>
