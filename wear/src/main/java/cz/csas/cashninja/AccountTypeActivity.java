@@ -1,6 +1,7 @@
 package cz.csas.cashninja;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,7 +64,9 @@ public class AccountTypeActivity extends Activity  implements WearableListView.C
 
     @Override
     public void onClick(WearableListView.ViewHolder viewHolder) {
-        Toast.makeText(this, String.format("You selected item #%s", viewHolder.getPosition()), Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, String.format("You selected item #%s", viewHolder.getPosition()), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(AccountTypeActivity.this, ConfirmActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -83,7 +86,18 @@ public class AccountTypeActivity extends Activity  implements WearableListView.C
             MyItemView myItemView = (MyItemView) viewHolder.itemView;
 
             TextView textView = (TextView) myItemView.findViewById(R.id.text);
-            textView.setText(String.format("Line %d", i));
+
+            switch (i) {
+                case 0:
+                    textView.setText("Spořící účet");
+                break;
+                case 1:
+                    textView.setText("Kontokorent");
+                break;
+                case 2:
+                    textView.setText("Kreditní účet");
+                break;
+            }
 
             Integer resourceId = items.get(i);
             CircledImageView imageView = (CircledImageView) myItemView.findViewById(R.id.image);
