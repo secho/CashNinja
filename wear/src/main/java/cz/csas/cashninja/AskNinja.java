@@ -144,6 +144,17 @@ public class AskNinja extends Activity {
 
                     final DelayedConfirmationView dcv = (DelayedConfirmationView) amountView.findViewById(R.id.delayed_confirmation);
                     dcv.setTotalTimeMs(3000);
+                    dcv.setListener(new DelayedConfirmationView.DelayedConfirmationListener() {
+                        @Override
+                        public void onTimerFinished(View view) {
+                            gridViewPager.scrollTo(0, 1);
+                        }
+
+                        @Override
+                        public void onTimerSelected(View view) {
+                            gridViewPager.scrollTo(0, 1);
+                        }
+                    });
                     dcv.start();
 
                     amountTextView = (TextView) amountView.findViewById(R.id.asked_amount);
