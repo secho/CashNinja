@@ -38,6 +38,7 @@ public class TransferActivity extends Activity {
 
             }
         });
+        dcv.start();
 
 
     }
