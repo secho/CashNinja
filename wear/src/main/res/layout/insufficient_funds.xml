@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/exclamation"
+            android:id="@+id/insf_circle"
             app:circle_color="@color/orange"
             app:circle_radius="60dp"
             android:layout_gravity="center_horizontal"
@@ -28,7 +29,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
 
             android:paddingTop="10dp"
-            android:text="Doplň hotovost."
+            android:text="Insufficient funds."
             android:textColor="@color/grey"
             android:id="@+id/textView2"
             android:layout_gravity="center_horizontal" />
