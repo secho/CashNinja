@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.RecognizerIntent;
+import android.support.wearable.view.DelayedConfirmationView;
 import android.support.wearable.view.GridPagerAdapter;
 import android.support.wearable.view.GridViewPager;
 import android.support.wearable.view.WatchViewStub;
@@ -22,6 +23,9 @@ public class AskNinja extends Activity {
     private TextView mTextView;
     public static int requiredAmount;
     GridViewPager gridViewPager;
+
+    private TextView amountTextView;
+    private View amountView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,7 @@ public class AskNinja extends Activity {
     private class MyGridViewPagerAdapter extends GridPagerAdapter {
         @Override
         public int getColumnCount(int arg0) {
-            return 4;
+            return 5;
         }
 
         @Override
@@ -62,13 +66,13 @@ public class AskNinja extends Activity {
 
 
             if (col == 0 ) {
-                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.grid_layout_item, container, false);
-                final TextView textView = (TextView) view.findViewById(R.id.textView);
-                textView.setText(String.format("jednicka", row, col));
-                container.addView(view);
-                return view;
+                amountView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.check_balance, container, false);
+
+
+                container.addView(amountView);
+                return amountView;
             } else if (col == 1) {
-                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.grid_layout_item, container, false);
+                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.insufficient_funds, container, false);
                 final TextView textView = (TextView) view.findViewById(R.id.textView);
                 textView.setText(String.format("dvojka", row, col));
                 container.addView(view);
@@ -80,6 +84,12 @@ public class AskNinja extends Activity {
                 container.addView(view);
                 return view;
             } else if (col == 3) {
+                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.grid_layout_item, container, false);
+                final TextView textView = (TextView) view.findViewById(R.id.textView);
+                textView.setText(String.format("ctyrka", row, col));
+                container.addView(view);
+                return view;
+            } else if (col == 4) {
                 view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.grid_layout_item, container, false);
                 final TextView textView = (TextView) view.findViewById(R.id.textView);
                 textView.setText(String.format("ctyrka", row, col));
@@ -131,6 +141,19 @@ public class AskNinja extends Activity {
 
             try {
                 requiredAmount = Integer.parseInt(spokenText);
+
+                if (amountView != null) {
+
+                    final DelayedConfirmationView dcv = (DelayedConfirmationView) amountView.findViewById(R.id.delayed_confirmation);
+                    dcv.setTotalTimeMs(3000);
+                    dcv.start();
+
+                    amountTextView = (TextView) amountView.findViewById(R.id.asked_amount);
+                    amountTextView.setText(requiredAmount + "CZK");
+                    amountView.invalidate();
+                }
+
+                Log.v("Ninja", requiredAmount + "CZK");
             } catch (NumberFormatException e) {
                 Log.v("Ninja", "spoken text is not integer");
             }
