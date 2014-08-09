@@ -65,7 +65,7 @@ public class AccountTypeActivity extends Activity  implements WearableListView.C
     @Override
     public void onClick(WearableListView.ViewHolder viewHolder) {
       //  Toast.makeText(this, String.format("You selected item #%s", viewHolder.getPosition()), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(AccountTypeActivity.this, ConfirmActivity.class);
+        Intent intent = new Intent(AccountTypeActivity.this, TransferActivity.class);
         startActivity(intent);
     }
 
