@@ -23,17 +23,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="You asked:"
-                android:textColor="@color/black"
+                android:text="You asked Ninja for:"
+                android:textColor="@color/grey"
                 android:id="@+id/textView"
                 android:layout_gravity="left|top" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:paddingTop="10dp"
                 android:text="2500 Kč"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 android:id="@+id/asked_amount" />
             </LinearLayout>
 
@@ -53,21 +54,22 @@
         android:id="@+id/delayed_confirmation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/bank"
 
         app:circle_color="@color/blue"
         app:circle_radius="40dp"
         app:circle_radius_pressed="60dp"
         app:circle_padding="5dp"
         app:circle_border_width="5dp"
-        app:circle_border_color="@color/orange"/>
+        app:circle_border_color="@color/blue"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Checking ..."
+            android:textColor="@color/grey"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Checking account ..."
+            android:paddingLeft="10dp"
             android:id="@+id/textView3"
             android:layout_toEndOf="@+id/delayed_confirmation"
             android:layout_centerVertical="true"
