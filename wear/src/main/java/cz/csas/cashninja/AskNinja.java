@@ -147,12 +147,14 @@ public class AskNinja extends Activity {
                     dcv.setListener(new DelayedConfirmationView.DelayedConfirmationListener() {
                         @Override
                         public void onTimerFinished(View view) {
-                            gridViewPager.setCurrentItem (0, 1, true);
+                            Intent intent = new Intent(AskNinja.this, AccountTypeActivity.class);
+                            startActivity(intent);
                         }
 
                         @Override
                         public void onTimerSelected(View view) {
-                            gridViewPager.setCurrentItem (0, 1, true);
+                            Intent intent = new Intent(AskNinja.this, AccountTypeActivity.class);
+                            startActivity(intent);
                         }
                     });
                     dcv.start();
