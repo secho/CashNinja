@@ -1,11 +1,18 @@
 package cz.csas.cashninja;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.speech.RecognizerIntent;
+import android.support.wearable.view.GridPagerAdapter;
+import android.support.wearable.view.GridViewPager;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
@@ -13,28 +20,101 @@ import java.util.List;
 public class AskNinja extends Activity {
 
     private TextView mTextView;
+    public static int requiredAmount;
+    GridViewPager gridViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ask_ninja);
         final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
+        final LayoutInflater inflater = getLayoutInflater();
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 mTextView = (TextView) stub.findViewById(R.id.text);
+                displaySpeechRecognizer();
+
+                gridViewPager = (GridViewPager) findViewById(R.id.pager);
+                gridViewPager.setAdapter(new MyGridViewPagerAdapter());
+//                gridViewPager.addView(inflater.inflate(R.layout.selector_generic, stub));;
             }
         });
 
-        displaySpeechRecognizer();
+
     }
 
+    private class MyGridViewPagerAdapter extends GridPagerAdapter {
+        @Override
+        public int getColumnCount(int arg0) {
+            return 4;
+        }
+
+        @Override
+        public int getRowCount() {
+            return 1;
+        }
+
+        @Override
+        protected Object instantiateItem(ViewGroup container, int row, int col) {
+
+            final View view;
+
+
+            if (col == 0 ) {
+                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.grid_layout_item, container, false);
+                final TextView textView = (TextView) view.findViewById(R.id.textView);
+                textView.setText(String.format("jednicka", row, col));
+                container.addView(view);
+                return view;
+            } else if (col == 1) {
+                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.grid_layout_item, container, false);
+                final TextView textView = (TextView) view.findViewById(R.id.textView);
+                textView.setText(String.format("dvojka", row, col));
+                container.addView(view);
+                return view;
+            } else if (col == 2) {
+                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.grid_layout_item, container, false);
+                final TextView textView = (TextView) view.findViewById(R.id.textView);
+                textView.setText(String.format("trojka", row, col));
+                container.addView(view);
+                return view;
+            } else if (col == 3) {
+                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.grid_layout_item, container, false);
+                final TextView textView = (TextView) view.findViewById(R.id.textView);
+                textView.setText(String.format("ctyrka", row, col));
+                container.addView(view);
+                return view;
+            }
+
+            return null;
+
+
+        }
+
+        @Override
+        protected void destroyItem(ViewGroup container, int row, int col, Object view) {
+            container.removeView((View)view);
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view==object;
+        }
+    }
+
+    private void vibrateWatch() {
+//        Vibrator v = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds v.vibrate(500);
+    }
 
     // Create an intent that can start the Speech Recognizer activity
     private void displaySpeechRecognizer() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "How much do you need?");
 // Start the activity, the intent will be populated with the speech text
         startActivityForResult(intent, 0);
     }
@@ -48,6 +128,13 @@ public class AskNinja extends Activity {
             String spokenText = results.get(0);
             // Do something with spokenText
             Log.v("Ninja", spokenText);
+
+            try {
+                requiredAmount = Integer.parseInt(spokenText);
+            } catch (NumberFormatException e) {
+                Log.v("Ninja", "spoken text is not integer");
+            }
+
         }
         super.onActivityResult(requestCode, resultCode, data);
 
