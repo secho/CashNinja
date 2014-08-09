@@ -18,6 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AccountTypeActivity"
+            android:label="@string/title_activity_account_type"
+            android:parentActivityName=".AskNinja" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cz.csas.cashninja.AskNinja" />
+        </activity>
     </application>
 
 </manifest>
