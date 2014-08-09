@@ -21,24 +21,27 @@ public class TransferActivity extends Activity {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 mTextView = (TextView) stub.findViewById(R.id.text);
+
+                final DelayedConfirmationView dcv = (DelayedConfirmationView) stub.findViewById(R.id.delayed_confirmation_transfer);
+                dcv.setTotalTimeMs(3000);
+                dcv.setListener(new DelayedConfirmationView.DelayedConfirmationListener() {
+                    @Override
+                    public void onTimerFinished(View view) {
+                        Intent intent = new Intent(TransferActivity.this, ConfirmActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onTimerSelected(View view) {
+                        Intent intent = new Intent(TransferActivity.this, ConfirmActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                dcv.start();
             }
         });
 
-        final DelayedConfirmationView dcv = (DelayedConfirmationView) stub.findViewById(R.id.delayed_confirmation);
-        dcv.setTotalTimeMs(3000);
-        dcv.setListener(new DelayedConfirmationView.DelayedConfirmationListener() {
-            @Override
-            public void onTimerFinished(View view) {
-                Intent intent = new Intent(TransferActivity.this, ConfirmActivity.class);
-                startActivity(intent);
-            }
 
-            @Override
-            public void onTimerSelected(View view) {
-
-            }
-        });
-        dcv.start();
 
 
     }
