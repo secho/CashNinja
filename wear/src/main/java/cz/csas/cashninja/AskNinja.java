@@ -51,7 +51,7 @@ public class AskNinja extends Activity {
     private class MyGridViewPagerAdapter extends GridPagerAdapter {
         @Override
         public int getColumnCount(int arg0) {
-            return 5;
+            return 1;
         }
 
         @Override
@@ -147,13 +147,13 @@ public class AskNinja extends Activity {
                     dcv.setListener(new DelayedConfirmationView.DelayedConfirmationListener() {
                         @Override
                         public void onTimerFinished(View view) {
-                            Intent intent = new Intent(AskNinja.this, AccountTypeActivity.class);
+                            Intent intent = new Intent(AskNinja.this, FundsLowActivity.class);
                             startActivity(intent);
                         }
 
                         @Override
                         public void onTimerSelected(View view) {
-                            Intent intent = new Intent(AskNinja.this, AccountTypeActivity.class);
+                            Intent intent = new Intent(AskNinja.this, FundsLowActivity.class);
                             startActivity(intent);
                         }
                     });
