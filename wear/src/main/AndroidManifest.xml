@@ -26,6 +26,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cz.csas.cashninja.AskNinja" />
         </activity>
+        <activity
+            android:name=".TransferActivity"
+            android:label="@string/title_activity_transfer"
+            android:parentActivityName=".AskNinja" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cz.csas.cashninja.AskNinja" />
+        </activity>
+        <activity
+            android:name=".ConfirmActivity"
+            android:label="@string/title_activity_confirm"
+            android:parentActivityName=".AskNinja" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cz.csas.cashninja.AskNinja" />
+        </activity>
     </application>
 
 </manifest>
