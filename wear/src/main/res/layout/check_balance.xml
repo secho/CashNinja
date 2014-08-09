@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/android.support.wearable.view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="20px">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="You asked:"
+            android:textColor="@color/black"
+            android:id="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="2500 Kč"
+            android:textColor="@color/grey"
+            android:id="@+id/textView2" />
+
+        <android.support.wearable.view.DelayedConfirmationView
+            android:id="@+id/delayed_confirmation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_launcher"
+            app:circle_color="@color/blue"
+            app:circle_radius="40dp"
+            app:circle_radius_pressed="60dp"
+            app:circle_padding="5dp"
+            app:circle_border_width="5dp"
+            app:circle_border_color="@color/orange"/>
+
+
+    </LinearLayout>
+</FrameLayout>
