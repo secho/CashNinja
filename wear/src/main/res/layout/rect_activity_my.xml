@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MyActivity"
+    android:background="@color/white"
     tools:deviceIds="wear_square">
 
     <android.support.wearable.view.WearableListView

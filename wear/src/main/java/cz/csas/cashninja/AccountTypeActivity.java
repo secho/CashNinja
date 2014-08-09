@@ -56,9 +56,9 @@ public class AccountTypeActivity extends Activity  implements WearableListView.C
     static {
 
         items = new ArrayList<Integer>();
-        items.add(R.drawable.bank);
-        items.add(R.drawable.bank);
-        items.add(R.drawable.bank);
+        items.add(R.drawable.account);
+        items.add(R.drawable.account);
+        items.add(R.drawable.account);
 
     }
 
